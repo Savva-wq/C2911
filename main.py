@@ -1,37 +1,35 @@
-class Person:
-    def __init__(self, name):
-        self.name = name
-        self.dog = None
+import random
 
-    def adopt_dog(self, dog):
-        self.dog = dog
-        print(f"{self.name} adopted a dog named {dog.name}.")
+def play_game():
+    print("Гра 'Камінь, ножиці, папір'")
 
-    def walk_dog(self):
-        if self.dog is not None:
-            print(f"{self.name} is walking with {self.dog.name}.")
+    choices = ["камінь", "ножиці", "папір"]
+
+    while True:
+        computer_choice = random.choice(choices)
+
+        player_choice = input("Виберіть камінь, ножиці або папір (або 'вийти', щоб закінчити гру): ").lower()
+
+        if player_choice == "вийти":
+            break
+
+        if player_choice not in choices:
+            print("Неправильний вибір. Спробуйте ще раз.")
+            continue
+
+        print("Ваш вибір:", player_choice)
+        print("Вибір комп'ютера:", computer_choice)
+
+        if player_choice == computer_choice:
+            print("Нічия!")
+        elif (player_choice == "камінь" and computer_choice == "ножиці") or \
+                (player_choice == "ножиці" and computer_choice == "папір") or \
+                (player_choice == "папір" and computer_choice == "камінь"):
+            print("Ви перемогли!")
         else:
-            print(f"{self.name} doesn't have a dog to walk.")
+            print("Комп'ютер переміг!")
 
-    def feed_dog(self):
-        if self.dog is not None:
-            print(f"{self.name} is feeding {self.dog.name}.")
-        else:
-            print(f"{self.name} doesn't have a dog to feed.")
+        print()
 
-
-class Dog:
-    def __init__(self, name, breed):
-        self.name = name
-        self.breed = breed
-
-    def bark(self):
-        print(f"{self.name} says: Woof!")
-
-person = Person("John")
-dog = Dog("Max", "Labrador")
-
-person.adopt_dog(dog)
-person.walk_dog()
-person.feed_dog()
-dog.bark()
+    print("Дякую за гру!")
+play_game()
