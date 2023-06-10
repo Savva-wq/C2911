@@ -1,37 +1,15 @@
-class Person:
-    def __init__(self, name):
-        self.name = name
-        self.dog = None
+class CurrencyConverter:
+    def __init__(self, exchange_rate):
+        self.exchange_rate = exchange_rate
 
-    def adopt_dog(self, dog):
-        self.dog = dog
-        print(f"{self.name} adopted a dog named {dog.name}.")
+    def convert_to_usd(self, amount):
+        usd_amount = amount / self.exchange_rate
+        return usd_amount
 
-    def walk_dog(self):
-        if self.dog is not None:
-            print(f"{self.name} is walking with {self.dog.name}.")
-        else:
-            print(f"{self.name} doesn't have a dog to walk.")
+exchange_rate = 36,5
 
-    def feed_dog(self):
-        if self.dog is not None:
-            print(f"{self.name} is feeding {self.dog.name}.")
-        else:
-            print(f"{self.name} doesn't have a dog to feed.")
+converter = CurrencyConverter(exchange_rate)
 
-
-class Dog:
-    def __init__(self, name, breed):
-        self.name = name
-        self.breed = breed
-
-    def bark(self):
-        print(f"{self.name} says: Woof!")
-
-person = Person("John")
-dog = Dog("Max", "Labrador")
-
-person.adopt_dog(dog)
-person.walk_dog()
-person.feed_dog()
-dog.bark()
+amount = float(input("Введіть суму в вашій валюті: "))
+usd_amount = converter.convert_to_usd(amount)
+print(f"Сума в доларах США: {usd_amount:.2f}")
